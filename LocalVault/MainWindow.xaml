@@ -7,6 +7,75 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid Margin="10,10,10,10" Width="600" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
+            <TextBox  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="PasswordTextBox" Width="600" Height="20" Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+            <TextBlock IsHitTestVisible="False" Text="Your password" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="20" Width="610" Margin="3,0,0,0" Grid.ColumnSpan="1" >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=PasswordTextBox}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <Button x:Name="EncryptButton" Content="Encrypt" HorizontalAlignment="Right" Margin="10,10,90,0" VerticalAlignment="Top" Width="70" Height="20" Click="EncryptButton_Click"/>
+        <Button x:Name="DecryptButton" Content="Decrypt" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="70" Height="20" Click="DecryptButton_Click"/>
+        <ListBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,1,0" Width="250" Height="350">
+        </ListBox>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,40,0,0" Width="70" Height="350">
+            <Button Width="70" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Add" />
+            <Button Width="70" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Remove" Margin="0,30,0,0" />
+        </Grid>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,40,0,0" Height="350" Width="440">
+            <Grid Margin="10,0,10,10" Width="420" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
+                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="Name" Width="420" Height="20" Grid.ColumnSpan="2"/>
+                <TextBlock IsHitTestVisible="False" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="20" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="2" Grid.Column="0" IsEnabled="False">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Name}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid Margin="10,30,10,10" Width="420" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
+                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Password" Width="420" Height="20" Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+                <TextBlock IsHitTestVisible="False" Text="Password" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="20" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="1" IsEnabled="False" >
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Password}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+            <Grid Margin="10,60,10,0" Width="420" Height="290" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
+                <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="Description" Width="420" Height="290" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                <TextBlock IsHitTestVisible="False" Text="Description" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="290" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="1" IsEnabled="False" >
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=Description}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
