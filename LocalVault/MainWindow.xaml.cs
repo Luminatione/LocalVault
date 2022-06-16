@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LocalVault.Configuration;
+using LocalVault.Crypto;
+using LocalVault.Storage;
 
 namespace LocalVault
 {
@@ -20,9 +23,21 @@ namespace LocalVault
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public MainWindow()
+		private LocalVaultConfiguration configuration;
+		public MainWindow(LocalVaultConfiguration configuration)
 		{
+			this.configuration = configuration;
 			InitializeComponent();
+		}
+
+		private void EncryptButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void DecryptButton_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }

@@ -5,6 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using LocalVault.Configuration;
+using LocalVault.Crypto;
+using LocalVault.Storage;
 
 namespace LocalVault
 {
@@ -13,5 +16,13 @@ namespace LocalVault
 	/// </summary>
 	public partial class App : Application
 	{
+		protected override void OnStartup(StartupEventArgs e)
+		{
+			MainWindow mainWindow = new MainWindow(new LocalVaultConfiguration(new AesService(), new FileStorageService()))
+			{
+				Title = "LocalVault"
+			};
+			mainWindow.Show();
+		}
 	}
 }
