@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LocalVault"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" d:DataContext="{d:DesignData MainWindow}">
     <Grid>
         <Grid Margin="10,10,10,10" Width="600" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
             <TextBox  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="PasswordTextBox" Width="600" Height="20" Grid.RowSpan="1" Grid.ColumnSpan="1"/>
@@ -24,15 +24,22 @@
         </Grid>
         <Button x:Name="EncryptButton" Content="Encrypt" HorizontalAlignment="Right" Margin="10,10,90,0" VerticalAlignment="Top" Width="70" Height="20" Click="EncryptButton_Click"/>
         <Button x:Name="DecryptButton" Content="Decrypt" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="70" Height="20" Click="DecryptButton_Click"/>
-        <ListBox HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,1,0" Width="250" Height="350">
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,1,0" Width="250" Height="350" ItemsSource="{Binding PasswordEntries}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="270,40,0,0" Width="70" Height="350">
-            <Button Width="70" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Add" />
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,35,0,0" Width="70" Height="350">
+            <Button x:Name="AddButton" Width="70" HorizontalAlignment="Center" Content="Add" Margin="0,0,0,330" Click="AddButton_Click" />
             <Button Width="70" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Remove" Margin="0,30,0,0" />
         </Grid>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,40,0,0" Height="350" Width="440">
             <Grid Margin="10,0,10,10" Width="420" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
-                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="Name" Width="420" Height="20" Grid.ColumnSpan="2"/>
+                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="Name" Width="420" Height="20" Grid.ColumnSpan="2" Text="{Binding SelectedItem.Name, ElementName=listBox}"/>
                 <TextBlock IsHitTestVisible="False" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="20" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="2" Grid.Column="0" IsEnabled="False">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
+using LocalVault.Crypto;
 
 
 namespace LocalVault
 {
 	public class PasswordEntry
 	{
-		public string Password { get; private set; }
-		public string Name { get; private set; }
-		public string Description { get; private set; }
+		public string Password { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
 
 		public PasswordEntry(string password, string name, string description)
 		{
@@ -18,5 +19,7 @@ namespace LocalVault
 			Name = name;
 			Description = description;
 		}
+
+		
 	}
 }
