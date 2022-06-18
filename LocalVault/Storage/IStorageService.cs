@@ -4,9 +4,9 @@ using System.Text;
 
 namespace LocalVault.Storage
 {
-    public interface IStorageService<T>
+    public interface IStorageService
     {
-	    List<T> LoadAll();
-	    void SaveAll(List<T> entries);
+	    List<PasswordEntry> LoadAll();
+	    void SaveAll(List<PasswordEntry> entries);
     }
 }
