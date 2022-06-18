@@ -18,7 +18,7 @@ namespace LocalVault
 	{
 		protected override void OnStartup(StartupEventArgs e)
 		{
-			MainWindow mainWindow = new MainWindow(new LocalVaultConfiguration(new AesService(), new FileStorageService()))
+			MainWindow mainWindow = new MainWindow(new LocalVaultConfiguration(new AesService(), new FileStorageService("Data")))
 			{
 				Title = "LocalVault"
 			};
