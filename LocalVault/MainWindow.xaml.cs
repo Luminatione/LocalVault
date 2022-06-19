@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace LocalVault
 	public partial class MainWindow : Window
 	{
 		private LocalVaultConfiguration configuration;
-		
-		public List<PasswordEntry> PasswordEntries { get; }
+
+		public BindingList<PasswordEntry> PasswordEntries { get; }
 
 		private byte[] vi = { 0x2, 0x1, 0x3, 0x7};
 
@@ -34,9 +35,9 @@ namespace LocalVault
 			this.configuration = configuration;
 			InitializeComponent();
 			DataContext = this;
-			PasswordEntries = configuration.StorageService.LoadAll() ?? new List<PasswordEntry>();
+			PasswordEntries = configuration.StorageService.LoadAll() ?? new BindingList<PasswordEntry>();
 			PasswordEntries.Add(new PasswordEntry("aaa", "aa", "ssss"));
-			
+
 		}
 
 		private void EncryptButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +61,11 @@ namespace LocalVault
 		private void AddButton_Click(object sender, RoutedEventArgs e)
 		{
 			PasswordEntries.Add(new PasswordEntry(string.Empty, "New Item", string.Empty));
+		}
+
+		private void RemoveButton_Click(object sender, RoutedEventArgs e)
+		{
+			PasswordEntries.Remove((PasswordEntry)PasswordEntriesListBox.SelectedItems[0] ?? new PasswordEntry());
 		}
 	}
 }

@@ -24,7 +24,7 @@
         </Grid>
         <Button x:Name="EncryptButton" Content="Encrypt" HorizontalAlignment="Right" Margin="10,10,90,0" VerticalAlignment="Top" Width="70" Height="20" Click="EncryptButton_Click"/>
         <Button x:Name="DecryptButton" Content="Decrypt" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="70" Height="20" Click="DecryptButton_Click"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,1,0" Width="250" Height="350" ItemsSource="{Binding PasswordEntries}">
+        <ListBox x:Name="PasswordEntriesListBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,40,1,0" Width="250" Height="350" ItemsSource="{Binding PasswordEntries}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -35,11 +35,11 @@
         </ListBox>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="275,35,0,0" Width="70" Height="350">
             <Button x:Name="AddButton" Width="70" HorizontalAlignment="Center" Content="Add" Margin="0,0,0,330" Click="AddButton_Click" />
-            <Button Width="70" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Remove" Margin="0,30,0,0" />
+            <Button x:Name="Remove" Width="70" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Remove" Margin="0,30,0,0" Click="RemoveButton_Click" />
         </Grid>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,40,0,0" Height="350" Width="440">
             <Grid Margin="10,0,10,10" Width="420" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
-                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="Name" Width="420" Height="20" Grid.ColumnSpan="2" Text="{Binding SelectedItem.Name, ElementName=listBox}"/>
+                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Left" x:Name="Name" Width="420" Height="20" Grid.ColumnSpan="2" Text="{Binding SelectedItem.Name, ElementName=PasswordEntriesListBox}"/>
                 <TextBlock IsHitTestVisible="False" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="20" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="2" Grid.Column="0" IsEnabled="False">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -54,7 +54,7 @@
                 </TextBlock>
             </Grid>
             <Grid Margin="10,30,10,10" Width="420" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
-                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Password" Width="420" Height="20" Grid.RowSpan="1" Grid.ColumnSpan="1"/>
+                <TextBox  VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="Password" Width="420" Height="20" Grid.RowSpan="1" Grid.ColumnSpan="1" Text="{Binding SelectedItem.Password, ElementName=PasswordEntriesListBox}"/>
                 <TextBlock IsHitTestVisible="False" Text="Password" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="20" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="1" IsEnabled="False" >
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
@@ -69,7 +69,7 @@
                 </TextBlock>
             </Grid>
             <Grid Margin="10,60,10,0" Width="420" Height="290" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.RowSpan="1">
-                <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="Description" Width="420" Height="290" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                <TextBox  VerticalAlignment="Top" HorizontalAlignment="Left" x:Name="Description" Width="420" Height="290" Grid.RowSpan="1" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Text="{Binding SelectedItem.Description, ElementName=PasswordEntriesListBox}"/>
                 <TextBlock IsHitTestVisible="False" Text="Description" VerticalAlignment="Top" HorizontalAlignment="Left" Foreground="DarkGray" Padding="3,1,0,0" Height="290" Width="420" Margin="3,0,0,0" Grid.ColumnSpan="1" IsEnabled="False" >
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">

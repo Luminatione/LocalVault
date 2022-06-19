@@ -13,6 +13,11 @@ namespace LocalVault
 		public string Name { get; set; }
 		public string Description { get; set; }
 
+		public PasswordEntry()
+		{
+			
+		}
+
 		public PasswordEntry(string password, string name, string description)
 		{
 			Password = password;
