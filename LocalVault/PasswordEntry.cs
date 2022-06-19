@@ -15,7 +15,7 @@ namespace LocalVault
 
 		public PasswordEntry()
 		{
-			
+
 		}
 
 		public PasswordEntry(string password, string name, string description)
@@ -25,6 +25,6 @@ namespace LocalVault
 			Description = description;
 		}
 
-		
+
 	}
 }

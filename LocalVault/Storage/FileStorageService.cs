@@ -33,7 +33,7 @@ namespace LocalVault.Storage
 
 		public void SaveAll(BindingList<PasswordEntry> entries)
 		{
-			using StreamWriter reader = new StreamWriter(File.OpenWrite(filename));
+			using StreamWriter reader = new StreamWriter(File.Open(filename, FileMode.Create));
 			reader.Write(JsonConvert.SerializeObject(entries));
 		}
 	}
