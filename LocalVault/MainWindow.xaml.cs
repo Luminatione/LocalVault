@@ -36,7 +36,6 @@ namespace LocalVault
 			InitializeComponent();
 			DataContext = this;
 			PasswordEntries = configuration.StorageService.LoadAll() ?? new BindingList<PasswordEntry>();
-			PasswordEntries.Add(new PasswordEntry("aaa", "aa", "ssss"));
 
 		}
 
