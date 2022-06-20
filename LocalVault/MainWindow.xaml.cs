@@ -78,9 +78,9 @@ namespace LocalVault
 
 				IsEncrypted = false;
 			}
-			catch (CryptographicException)
+			catch (CryptographicException ex)
 			{
-				MessageBox.Show("Invalid key - decryption failed");
+				MessageBox.Show("Decryption failed: " + ex.Message);
 			}
 		}
 
@@ -100,7 +100,7 @@ namespace LocalVault
 		{
 			if (PasswordTextBox.Text.Length > 16)
 			{
-				return new string(PasswordTextBox.Text.ToCharArray(), 0, 32);
+				return new string(PasswordTextBox.Text.ToCharArray(), 0, 16);
 			}
 			string result = PasswordTextBox.Text;
 			result += new string('0', 16 - result.Length);

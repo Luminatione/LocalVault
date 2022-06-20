@@ -24,7 +24,6 @@ namespace LocalVault.Crypto
 			using Aes aesAlg = Aes.Create();
 			aesAlg.Key = key;
 			aesAlg.IV = iv;
-			aesAlg.Padding = PaddingMode.PKCS7;
 
 			ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 			//str is transformed by encryptor and written in MemoryStream by StreamWriter and then encrypted test is retrieved by StreamReader
@@ -45,17 +44,16 @@ namespace LocalVault.Crypto
 			using Aes aesAlg = Aes.Create();
 			aesAlg.Key = key;
 			aesAlg.IV = iv;
-			aesAlg.Padding = PaddingMode.PKCS7;
-
 			string plaintext;
-			ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
+			ICryptoTransform decryptor = aesAlg.CreateDecryptor();
 			//cipherText is transformed by decryptor in CryptoStream and read by StreamReader
-			using (StreamReader decryptorStream = new StreamReader(new CryptoStream(
-				new MemoryStream(Encoding.BigEndianUnicode.GetBytes(cipherText)), decryptor, CryptoStreamMode.Read)))
+			MemoryStream memoryStream = new MemoryStream();
+			using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Write))
 			{
-				plaintext = decryptorStream.ReadToEnd();
+				byte[] cipherTextAsByte = Encoding.BigEndianUnicode.GetBytes(cipherText);
+				cryptoStream.Write(cipherTextAsByte, 0, cipherTextAsByte.Length);
 			}
-
+			plaintext = Encoding.BigEndianUnicode.GetString(memoryStream.ToArray());
 			return plaintext;
 		}
 
